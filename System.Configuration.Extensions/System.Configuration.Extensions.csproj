@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace />
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Authors>SeongSikChae</Authors>
     <Description>.NET System.Configuration namespace Extensions</Description>

@@ -36,48 +36,52 @@
 	public enum PropertyType
     {
 		/// <summary>
-		/// System.Boolean
+		/// <see cref="bool"/>
 		/// </summary>
-        BOOL,
+		BOOL,
 		/// <summary>
-		/// System.Byte
+		/// <see cref="byte"/>
 		/// </summary>
-        BYTE,
+		BYTE,
 		/// <summary>
-		/// System.SByte
+		/// <see cref="sbyte"/>
 		/// </summary>
-        SBYTE,
+		SBYTE,
 		/// <summary>
-		/// System.Int16
+		/// <see cref="short"/>
 		/// </summary>
-        SHORT,
+		SHORT,
 		/// <summary>
-		/// System.UInt16
+		/// <see cref="ushort"/>
 		/// </summary>
-        USHORT,
+		USHORT,
 		/// <summary>
-		/// System.Int32
+		/// <see cref="int"/>
 		/// </summary>
-        INT,
+		INT,
 		/// <summary>
-		/// System.UInt32
+		/// <see cref="uint"/>
 		/// </summary>
-        UINT,
+		UINT,
 		/// <summary>
-		/// System.Int64
+		/// <see cref="long"/>
 		/// </summary>
-        LONG,
+		LONG,
 		/// <summary>
-		/// System.Int64
+		/// <see cref="ulong"/>
 		/// </summary>
-        ULONG,
+		ULONG,
 		/// <summary>
-		/// System.Double
+		/// <see cref="double"/>
 		/// </summary>
-        DOUBLE,
+		DOUBLE,
 		/// <summary>
-		/// System.String
+		/// <see cref="string"/>
 		/// </summary>
-        STRING
+        STRING,
+		/// <summary>
+		/// <see cref="Enum"/>
+		/// </summary>
+		ENUM
     }
 }

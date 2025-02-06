@@ -214,5 +214,23 @@ namespace System.Configuration.Tests
                 throw new NotImplementedException();
             }
         }
+
+        [TestMethod]
+        public void EnumPropertyTest()
+        {
+            EnumPropertyConfig config = new EnumPropertyConfig();
+            ConfigurationValidator.Validate(config);
+        }
+
+        private class EnumPropertyConfig
+        {
+			[Property(PropertyType.ENUM, DefaultValue = "A")]
+			public TestEnum? Enum1 { get; set; }
+		}
+
+		private enum TestEnum
+        {
+            None, A, B
+        }
     }
 }

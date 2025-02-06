@@ -99,6 +99,12 @@
                         case PropertyType.STRING:
                             propertyInfo.SetValue(config, propertyAttribute.DefaultValue);
                             break;
+						case PropertyType.ENUM:
+							Type? t = Nullable.GetUnderlyingType(propertyInfo.PropertyType);
+							if (t == null)
+								throw new Exception($"config field '{propertyInfo.Name}' must be (Enum?) provided");
+							propertyInfo.SetValue(config, Enum.Parse(t, propertyAttribute.DefaultValue));
+							break;
                     }
                 }
 			}
@@ -167,23 +173,29 @@
 			public bool IsValuePresent => value is not null;
 		}
 
+		internal sealed class EnumProperty(Enum? value) : IProperty
+		{
+			public bool IsValuePresent => value is not null;
+		}
+
 		public static IProperty Of<SourceType>(SourceType o, PropertyInfo p, PropertyAttribute attribute)
 		{
-            return attribute.Type switch
-            {
-                PropertyType.BOOL => new BoolProperty((bool?)p.GetValue(o)),
-                PropertyType.BYTE => new ByteProperty((byte?)p.GetValue(o)),
-                PropertyType.SBYTE => new SByteProperty((sbyte?)p.GetValue(o)),
-                PropertyType.SHORT => new Int16Property((short?)p.GetValue(o)),
-                PropertyType.USHORT => new UInt16Property((ushort?)p.GetValue(o)),
-                PropertyType.INT => new Int32Property((int?)p.GetValue(o)),
-                PropertyType.UINT => new UInt32Property((uint?)p.GetValue(o)),
-                PropertyType.LONG => new Int64Property((long?)p.GetValue(o)),
-                PropertyType.ULONG => new UInt64Property((ulong?)p.GetValue(o)),
-                PropertyType.DOUBLE => new DoubleProperty((double?)p.GetValue(o)),
-                PropertyType.STRING => new StringProperty(p.GetValue(o) as string),
-                _ => throw new Exception($"unknown type '{attribute.Type}'"),
-            };
+			return attribute.Type switch
+			{
+				PropertyType.BOOL => new BoolProperty((bool?)p.GetValue(o)),
+				PropertyType.BYTE => new ByteProperty((byte?)p.GetValue(o)),
+				PropertyType.SBYTE => new SByteProperty((sbyte?)p.GetValue(o)),
+				PropertyType.SHORT => new Int16Property((short?)p.GetValue(o)),
+				PropertyType.USHORT => new UInt16Property((ushort?)p.GetValue(o)),
+				PropertyType.INT => new Int32Property((int?)p.GetValue(o)),
+				PropertyType.UINT => new UInt32Property((uint?)p.GetValue(o)),
+				PropertyType.LONG => new Int64Property((long?)p.GetValue(o)),
+				PropertyType.ULONG => new UInt64Property((ulong?)p.GetValue(o)),
+				PropertyType.DOUBLE => new DoubleProperty((double?)p.GetValue(o)),
+				PropertyType.STRING => new StringProperty(p.GetValue(o) as string),
+				PropertyType.ENUM => new EnumProperty((Enum?)p.GetValue(o)),
+				_ => throw new Exception($"unknown type '{attribute.Type}'"),
+			};
         }
 	}
 }
