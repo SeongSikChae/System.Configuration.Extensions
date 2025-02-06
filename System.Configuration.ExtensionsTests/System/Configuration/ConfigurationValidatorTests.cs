@@ -26,7 +26,7 @@ namespace System.Configuration.Tests
 
         private class UnkownTypeConfig
         {
-            [Property((PropertyType)11)]
+            [Property((PropertyType)12)]
             public string? StringValue { get; set; }
         }
 
