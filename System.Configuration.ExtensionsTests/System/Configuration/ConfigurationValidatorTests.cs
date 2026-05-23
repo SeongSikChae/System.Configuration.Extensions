@@ -8,7 +8,7 @@ namespace System.Configuration.Tests
         [TestMethod]
         public void NullValidateTest()
         {
-            Assert.ThrowsException<ArgumentNullException>(() =>
+            Assert.ThrowsExactly<ArgumentNullException>(() =>
             {
                 ConfigurationValidator.Validate<ParentConfig>(null);
             });
@@ -17,7 +17,7 @@ namespace System.Configuration.Tests
         [TestMethod]
         public void UnknownTypeValidateTest()
         {
-            Assert.ThrowsException<Exception>(() =>
+            Assert.ThrowsExactly<Exception>(() =>
             {
                 UnkownTypeConfig config = new UnkownTypeConfig();
                 ConfigurationValidator.Validate(config);
@@ -113,7 +113,7 @@ namespace System.Configuration.Tests
         {
             {
                 ParentPropertyNotFoundConfig config = new ParentPropertyNotFoundConfig();
-                Assert.ThrowsException<Exception>(() =>
+                Assert.ThrowsExactly<Exception>(() =>
                 {
                     ConfigurationValidator.Validate(config);
                 });
@@ -123,7 +123,7 @@ namespace System.Configuration.Tests
                 ParentPropertyConfig config = new ParentPropertyConfig();
                 config.BoolValue = true;
                 config.BoolValue4 = true;
-                Assert.ThrowsException<Exception>(() =>
+                Assert.ThrowsExactly<Exception>(() =>
                 {
                     ConfigurationValidator.Validate(config);
                 });
@@ -170,7 +170,7 @@ namespace System.Configuration.Tests
             config.StringValue2 = "Hello";
             config.StringValue3 = "Hello";
             config.BoolValue2 = true;
-            Assert.ThrowsException<Exception>(() =>
+            Assert.ThrowsExactly<Exception>(() =>
             {
                 ConfigurationValidator.Validate(config);
             });
@@ -201,7 +201,7 @@ namespace System.Configuration.Tests
         public void ValidatableConfigValidateTest()
         {
             ValidatableConfig config = new ValidatableConfig();
-            Assert.ThrowsException<NotImplementedException>(() =>
+            Assert.ThrowsExactly<NotImplementedException>(() =>
             {
                 ConfigurationValidator.Validate(config);
             });
